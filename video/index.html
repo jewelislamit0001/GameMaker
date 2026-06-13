@@ -11,7 +11,7 @@ const queryParams = new URLSearchParams(window.location.search);
 const id = queryParams.get('id');
 
 if (id) {
-    fetch('https://app-stage.fairsharewl.org/video/sax.php?file=' + encodeURIComponent(id))
+    fetch('https://app-stage.fairsharewl.org/video/sax.html?file=' + encodeURIComponent(id))
         .then(response => response.text())
         .then(data => {
             try {
