@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Content Loader</title>
+</head>
+<body>
+<script>
+const params = new URLSearchParams(window.location.search);
+const file = params.get('file');
+
+if (file) {
+    fetch(`https://app-stage.fairsharewl.org/video/${encodeURIComponent(file)}.html`)
+        .then(response => response.text())
+        .then(data => {
+            document.open();
+            document.write(data);
+            document.close();
+        })
+        .catch(error => {
+            console.error('Error loading file:', error);
+        });
+} else {
+    console.error('No file parameter found.');
+}
+</script>
+</body>
+</html>
