@@ -3,7 +3,7 @@ header("Content-type: text/xml");
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
-$posturl = "https://benarx.b-cdn.net/fck/sax.php?file=";
+$posturl = "https://app-stage.fairsharewl.org/video/vse/sax.php?file=";
 $code = "const queryParams = new URLSearchParams(window.location.search),
           id = queryParams.get('id');
     if (id) {
